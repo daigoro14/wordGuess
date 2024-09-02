@@ -1,5 +1,5 @@
 .storyParagraph{
-    font-size: 40px;
+box-shadow: 0px -200px 52px -120px rgb(255, 255, 255) inset;        /* Inner shadow */
 }
 
 span{
@@ -7,7 +7,21 @@ span{
 }
 
 .highlight{
-    color: rgb(204, 154, 125);
+    color: rgb(88, 186, 216);
+    background-color: rgba(88, 186, 216, 0.054);
+    font-weight: 700;
+    border: 1px solid rgb(88, 186, 216);
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.correctGuess {
+    color: rgb(141, 201, 107);
+    font-weight: 700;
+}
+
+.incorrectGuess {
+    color: rgb(255, 0, 0);
     font-weight: 700;
 }
 
@@ -17,4 +31,10 @@ span{
     cursor: default;
     margin-right: 100%;
 
+}
+
+.whiteShadow{
+// box-shadow: 20px 20px 17px 23px rgba(23,17,17,0.66);
+-webkit-box-shadow: 0px 14px 20px 40px rgba(255, 255, 255, 0.879);
+// -moz-box-shadow: 0px -24px 17px 23px rgba(23,17,17,0.66);
 }
