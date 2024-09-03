@@ -1,7 +1,22 @@
 import { error } from 'console';
 import express from 'express'
-const router = express.Router()
 import translate from 'translate';
+import OpenAI from "openai";
+
+const router = express.Router()
+const openai = new OpenAI();
+async function run() {
+    const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+            {"role": "user", "content": "write a haiku about ai"}
+        ]
+    });
+    console.log(completion);
+}
+
+run();
+
 
 async function translateString(str: string): Promise<string> {
     return translate(str, { from: 'pt', to: 'en' });

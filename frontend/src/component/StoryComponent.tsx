@@ -89,7 +89,9 @@ export default function StoryComponent() {
     updatedStory[firstWordIndex].inputGuess = newValue;
     // Update the story state
     setStory(updatedStory);
-};
+  };
+  
+  // const correctGuess = story[firstWordIndex].inputGuess === 
 
   return (
     <div className='storyComponent'>
