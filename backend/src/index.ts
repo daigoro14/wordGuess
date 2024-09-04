@@ -1,3 +1,5 @@
+import { Request, Response } from "express"
+
 const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv')
@@ -15,6 +17,10 @@ app.use(cors())
 app.use(express.urlencoded({extended: true}))
 
 app.use(express.json())
+
+app.get('/', (req: Request, res: Response) => { 
+    res.send('API is running...')
+})
 
 app.use('/stories', storyRouter)
 
