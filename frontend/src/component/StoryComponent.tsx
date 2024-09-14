@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {url} from '../App'
 import style from '../styles/StoryComponent.module.scss'
 // ICONS FROM https://react-icons.github.io/react-icons/search/#q=eye
@@ -26,6 +26,22 @@ export default function StoryComponent() {
     }, [])
   
   console.log(story)
+
+  const nextWord = useCallback(() => {
+    if (firstWordIndex !== null && firstWordIndex < story.length - 1) {
+      setFirstWordIndex(firstWordIndex + 1);
+      setTranslate(false);
+      setGuessValue(story[firstWordIndex + 1].inputGuess || '');
+    }
+  }, [firstWordIndex, story]);
+
+  const previousWord = useCallback(() => {
+    if (firstWordIndex !== null && firstWordIndex > 0) {
+      setFirstWordIndex(firstWordIndex - 1);
+      setTranslate(false);
+      setGuessValue(story[firstWordIndex - 1].inputGuess || '');
+    }
+  }, [firstWordIndex, story]);
   
     useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -41,7 +57,7 @@ export default function StoryComponent() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [firstWordIndex, story]);
+  }, [firstWordIndex, story, previousWord, nextWord]);
     
     // useEffect(() => {
     //   if (firstWordIndex !== null) {
@@ -63,21 +79,6 @@ export default function StoryComponent() {
     //   }  
     // },[firstWordIndex])
     
-  const nextWord = () => {
-    if (firstWordIndex !== null && firstWordIndex < story.length - 1) {
-      setFirstWordIndex(firstWordIndex + 1)
-      setTranslate(false)
-      setGuessValue(story[firstWordIndex + 1].inputGuess || '')
-    }
-  }
-
-  const previousWord = () => {
-    if (firstWordIndex !== null && firstWordIndex > 0) {
-      setFirstWordIndex(firstWordIndex - 1)
-      setTranslate(false)
-      setGuessValue(story[firstWordIndex - 1].inputGuess || '')
-    }
-  }
 
   const handleInputChange = (e: any) => {
     const newValue = e.target.value;
